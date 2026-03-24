@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Complaint</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #1e1e2f, #2b2b4a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 400px;
+            padding: 30px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            color: #fff;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #ccc;
+        }
+
+        select option {
+            color: black;
+        }
+
+        textarea {
+            resize: none;
+            height: 80px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #6c63ff, #4a47a3);
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #7d76ff, #5a57c0);
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .back-link a {
+            color: #bbb;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .back-link a:hover {
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Edit Complaint</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Title</label>
+        <input type="text" name="title" value="{{ complaint.title }}" placeholder="Enter title">
+
+        <label>Description</label>
+        <textarea name="description" placeholder="Enter description">{{ complaint.description }}</textarea>
+
+        <label>Class</label>
+        <select name="student_class">
+            {% for c in classes %}
+            <option value="{{ c }}" {% if c == complaint.student_class %}selected{% endif %}>
+                {{ c }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <label>Category</label>
+        <select name="category">
+            {% for cat in categories %}
+            <option value="{{ cat }}" {% if cat == complaint.category %}selected{% endif %}>
+                {{ cat }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Update Complaint</button>
+    </form>
+
+    <div class="back-link">
+        <a href="{% url 'view_complaint' %}">← Back to Complaints</a>
+    </div>
+</div>
+
+</body>
+</html>

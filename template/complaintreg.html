@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Complaint System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1e1e2f, #2b2b4a);
+    color: white;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 50px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+}
+
+.navbar h2 {
+    font-weight: 600;
+}
+
+.navbar a {
+    color: #bbb;
+    margin-left: 15px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.navbar a:hover {
+    color: white;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.hero h1 {
+    font-size: 28px;
+}
+
+.hero p {
+    color: #bbb;
+    margin-top: 10px;
+}
+
+/* Container */
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* Form Box */
+.box {
+    width: 420px;
+    padding: 25px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+label {
+    font-size: 13px;
+    color: #ccc;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+select option {
+    color: black;
+}
+
+textarea {
+    height: 90px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(135deg, #6c63ff, #4a47a3);
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.03);
+}
+
+.char-count {
+    font-size: 12px;
+    text-align: right;
+    color: #aaa;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <h2>Complaint System</h2>
+    <div>
+        <a href="{% url 'view_complaint' %}">My Complaints</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+
+<!-- Welcome Section -->
+<div class="hero">
+    <h1>Welcome 👋</h1>
+    <p>Submit and manage your complaints easily</p>
+</div>
+
+<!-- Form Section -->
+<div class="container">
+    <div class="box">
+
+        <h3 style="text-align:center;">Add Complaint</h3>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Enter Username" required>
+
+            <label>Title</label>
+            <input type="text" name="title" placeholder="Enter Title" required>
+
+            <label>Description</label>
+            <textarea name="description" maxlength="300" oninput="countChars(this)" required></textarea>
+            <div class="char-count" id="charCount">0 / 300</div>
+
+            <label>Class</label>
+            <select name="student_class" required>
+                <option value="">Select Class</option>
+                {% for c in classes %}
+                    <option value="{{ c }}">{{ c }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Category</label>
+            <select name="category">
+                {% for cat in categories %}
+                    <option value="{{ cat }}">{{ cat }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Submit Complaint</button>
+        </form>
+
+    </div>
+</div>
+
+<script>
+function countChars(el){
+    document.getElementById("charCount").innerText = el.value.length + " / 300";
+}
+</script>
+
+</body>
+</html>
