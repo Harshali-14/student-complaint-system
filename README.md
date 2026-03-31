@@ -35,7 +35,7 @@ A web-based **Complaint Management System** built using **Django** and **MySQL**
 ![About](Screenshots/about_us.png)
 
 ### 👤 User Profile
-![Profile](Screenshots/profile.png)
+![Profile](Screenshots/profilepage.png)
 
 ### 📋 View Complaints
 ![View Complaints](Screenshots/viewcomplaint.png)
