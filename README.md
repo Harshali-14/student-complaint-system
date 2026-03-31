@@ -23,6 +23,29 @@ A web-based **Complaint Management System** built using **Django** and **MySQL**
 * Frontend: HTML, CSS, JavaScript
 
 ---
+## 📸 Screenshots
+
+### 📝 Register Page
+![Register](screenshots/register.png)
+
+### 🔐 Login Page
+![Login](screenshots/login.png)
+
+### ℹ️ About Page
+![About](screenshots/about_us.png)
+
+### 👤 User Profile
+![Profile](screenshots/profile.png)
+
+### 📋 View Complaints
+![View Complaints](screenshots/viewcomplaint.png)
+
+### 📊 Complaint Dashboard
+![Dashboard](screenshots/complaints_dashboard.png)
+
+### ✏️ Update Complaint
+![Update Complaint](screenshots/updatepage.png)
+
 
 ## ⚙️ Setup
 
@@ -60,3 +83,5 @@ python manage.py runserver
 ## 👩‍💻 Author
 
 Harshali Kulkarni
+
+
